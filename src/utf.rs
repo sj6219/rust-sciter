@@ -181,7 +181,7 @@ pub fn w2sn(sz: LPCWSTR, len: usize) -> String
 
 /// Rust string to UTF-8 conversion.
 pub fn s2un(s: &str) -> (CString, u32) {
-	let cs = CString::new(s).unwrap();
+	let cs = CString::new(s.trim_end_matches('\0')).unwrap_or(CString::new("").unwrap());
 	let n = cs.as_bytes().len() as u32;
 	return (cs, n);
 }
@@ -193,7 +193,7 @@ pub fn s2vec(s: &str) -> Vec<u16> {
 
 /// Rust string to UTF-16 conversion.
 pub fn s2vecn(s: &str) -> (Vec<u16>, u32) {
-	let cs = CString::new(s).unwrap();
+	let cs = CString::new(s.trim_end_matches('\0')).unwrap_or(CString::new("").unwrap());
 	let mut out = Vec::with_capacity(s.len() * 2 + 1);
 	towcs(cs.to_bytes(), &mut out);
 	let n = out.len() as u32;
