@@ -467,12 +467,12 @@ lazy_static! {
 /// }
 /// ```
 pub fn set_library(custom_path: &str) -> ::std::result::Result<(), String> {
-  #[cfg(not(feature = "dynamic"))]
+  #[cfg(any(windows, not(feature = "dynamic")))]
   fn set_impl(_: &str) -> ::std::result::Result<(), String> {
     Err("Don't use `sciter::set_library()` in static builds.\n  Build with the feature \"dynamic\" instead.".to_owned())
   }
 
-  #[cfg(feature = "dynamic")]
+  #[cfg(all(not(windows), feature = "dynamic"))]
   fn set_impl(path: &str) -> ::std::result::Result<(), String> {
     unsafe {
       ext::CUSTOM_DLL_PATH = Some(path.to_owned());
