@@ -20,9 +20,6 @@ travis-ci = { repository = "sciter-sdk/rust-sciter" }
 
 maintenance = { status = "passively-maintained" }
 
-[workspace]
-members = [".", "serde", "examples/extension", "examples/windowless"]
-
 
 [lib]
 name = "sciter"

@@ -129,13 +129,13 @@ pub use capi::scapi::{ISciterAPI};
 use capi::scgraphics::SciterGraphicsAPI;
 use capi::screquest::SciterRequestAPI;
 
-#[cfg(all(windows, not(feature = "dynamic")))]
+#[cfg(windows)]
 mod ext {
 	#[link(name = "sciter.static")]
 	extern "system" { pub fn SciterAPI() -> *const ::capi::scapi::ISciterAPI;	}
 }
 
-
+/*
 #[cfg(all(windows, feature = "dynamic"))]
 mod ext {
 	// Note:
@@ -223,6 +223,7 @@ mod ext {
     }
 	}
 }
+*/
 
 #[cfg(all(feature = "dynamic", unix))]
 mod ext {
