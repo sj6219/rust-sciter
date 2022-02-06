@@ -179,6 +179,7 @@ pub struct Value
 
 /// `sciter::Value` can be transferred across thread boundaries.
 unsafe impl Send for Value {}
+unsafe impl Sync for Value {}
 
 impl Value {
 
