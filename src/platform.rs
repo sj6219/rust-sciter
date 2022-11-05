@@ -464,7 +464,7 @@ mod macos {
 		/// Run the main app message loop until window been closed.
 		fn run_app(&self) {
 			let app = OsWindow::get_app();
-			let _: () = unsafe { msg_send!(app, finishLaunching) };
+			//let _: () = unsafe { msg_send!(app, finishLaunching) };
 			let _: () = unsafe { msg_send!(app, run) };
 		}
 
